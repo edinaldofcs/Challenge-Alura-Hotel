@@ -18,6 +18,7 @@ import java.awt.Toolkit;
 
 public class Erro extends JDialog {
 
+	private static final long serialVersionUID = -4866617253002258864L;
 	private final JPanel contentPanel = new JPanel();
 
 	/**
@@ -25,7 +26,7 @@ public class Erro extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			Erro dialog = new Erro("yyy");
+			Erro dialog = new Erro("", 0);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -36,7 +37,7 @@ public class Erro extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Erro(String msg) {		
+	public Erro(String msg, int num) {		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Erro.class.getResource("../imagens/aH-40px.png")));
 		setBounds(100, 100, 376, 226);
 		getContentPane().setLayout(new BorderLayout());
@@ -55,7 +56,7 @@ public class Erro extends JDialog {
 			JLabel lblNewLabel_1 = new JLabel(msg);
 			lblNewLabel_1.setForeground(new Color (12, 138, 199));
 			lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 18));
-			lblNewLabel_1.setBounds(60, 122, 290, 14);
+			lblNewLabel_1.setBounds(num, 122, 350, 20);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
@@ -66,9 +67,7 @@ public class Erro extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						dispose();
-						//Login login = new Login();
-						//login.setVisible(true);
+						dispose();						
 					}
 				});
 				okButton.setActionCommand("OK");

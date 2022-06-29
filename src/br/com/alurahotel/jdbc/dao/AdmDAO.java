@@ -71,11 +71,10 @@ public class AdmDAO {
 			String sql = "SELECT CPF, SENHA FROM FUNCIONARIOS WHERE CPF = ?";
 
 			try (PreparedStatement pstm = connection.prepareStatement(sql)) {		
-				pstm.setString(1, adm.getNome());
+				pstm.setString(1, adm.getCpf());
 				pstm.execute();
 				
 				exist = validarSenha(pstm, adm.getSenha());
-				System.out.println(exist);
 			}
 			return exist;
 		} catch (SQLException e) {

@@ -1,6 +1,5 @@
 package br.com.alurahotel.jdbc.views;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -17,6 +16,7 @@ import java.awt.Toolkit;
 
 public class MenuUsuario extends JFrame {
 
+	private static final long serialVersionUID = 2224696099910509771L;
 	private JPanel contentPane;
 
 	/**

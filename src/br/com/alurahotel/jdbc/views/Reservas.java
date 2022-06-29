@@ -13,18 +13,16 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
+
+import br.com.alurahotel.jdbc.controller.ReservasController;
+import br.com.alurahotel.jdbc.modelo.Reserva;
+
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JPopupMenu;
-import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.SimpleDateFormat;
-
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -32,8 +30,12 @@ import java.awt.Toolkit;
 
 public class Reservas extends JFrame {
 
+	private static final long serialVersionUID = 7767045887526242900L;
 	private JPanel contentPane;
 	private JTextField Valor;
+	private Double valorFinal;
+	
+	private ReservasController reservaController;
 
 	/**
 	 * Launch the application.
@@ -67,6 +69,8 @@ public class Reservas extends JFrame {
 		contentPane.setLayout(null);
 		setResizable(false);
 		setLocationRelativeTo(null);
+		
+		this.reservaController = new ReservasController();
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(245, 245, 245));
@@ -77,7 +81,6 @@ public class Reservas extends JFrame {
 		JDateChooser FechaE = new JDateChooser();
 		FechaE.setBounds(88, 166, 235, 33);
 		panel.add(FechaE);
-		// System.out.println(FechaE.getDateFormatString() + " a");
 
 		JLabel lblNewLabel_1 = new JLabel("Data de Check In");
 		lblNewLabel_1.setBounds(88, 142, 133, 14);
@@ -120,6 +123,7 @@ public class Reservas extends JFrame {
 
 		Valor = new JTextField();
 		Valor.setBounds(88, 303, 235, 33);
+		Valor.setForeground(Color.BLACK);
 		Valor.setEnabled(false);
 		panel.add(Valor);
 		Valor.setColumns(10);
@@ -135,10 +139,10 @@ public class Reservas extends JFrame {
 		FormaPago.setModel(new DefaultComboBoxModel(new String[] { "Cartão de Crédito", "Cartão de Débito", "Boleto" }));
 		panel.add(FormaPago);
 
-		JLabel lblNewLabel_1_1_1_1 = new JLabel("Forma de pagamento");
-		lblNewLabel_1_1_1_1.setBounds(88, 347, 151, 24);
-		lblNewLabel_1_1_1_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		panel.add(lblNewLabel_1_1_1_1);
+		JLabel fPagamento = new JLabel("Forma de pagamento");
+		fPagamento.setBounds(88, 347, 151, 24);
+		fPagamento.setFont(new Font("Arial", Font.PLAIN, 14));
+		panel.add(fPagamento);
 
 		JLabel lblNewLabel_4 = new JLabel("Sistema de Reservas");
 		lblNewLabel_4.setBounds(108, 93, 199, 42);
@@ -151,12 +155,13 @@ public class Reservas extends JFrame {
 			
 		public void actionPerformed(ActionEvent e) {	
 			if(Valor.getText().length() > 0) {	
-				//inserir 
-				RegistroHospede hospede = new RegistroHospede("123");
+				Reserva reserva = new Reserva(FechaE.getDate(), FechaS.getDate(), valorFinal, FormaPago.getSelectedItem().toString());
+				salvar(reserva);
+				RegistroHospede hospede = new RegistroHospede(reserva.getId());
 				hospede.setVisible(true);
 				dispose();
 			}else {
-				Erro erro = new Erro("Preencha todos os campos");
+				Erro erro = new Erro("Preencha todos os campos", 50);
 				erro.setVisible(true);
 			}
 		}
@@ -175,15 +180,26 @@ public class Reservas extends JFrame {
 	}
 
 	
-	private void calcularDiaria(JDateChooser dataEntrada, JDateChooser dataSaida) {
+	private void calcularDiaria(JDateChooser dataEntrada, JDateChooser dataSaida) {		
 		SimpleDateFormat dcn = new SimpleDateFormat("yyyyMMdd");
 		int entrada = Integer.parseInt(dcn.format(dataEntrada.getDate()));
 		int saida = Integer.parseInt(dcn.format(dataSaida.getDate()));
-		Double valorFinal = (saida - entrada) * 40.00;
+		valorFinal = (saida - entrada) * 40.00;
 		if(valorFinal > 0.0) {
 			Valor.setText("R$ " + valorFinal.toString());			
 		}else {
 			Valor.setText("");
+		}
+	}
+	
+	private void salvar(Reserva reserva) {
+		if (!Valor.getText().equals("")) {
+			this.reservaController.inserir(reserva);
+			Erro erro = new Erro("Salvo com sucesso!", 80);
+			erro.setVisible(true);
+		} else {
+			Erro erro = new Erro("Não foi possível finalizar a reserva", 10);
+			erro.setVisible(true);
 		}
 	}
 }

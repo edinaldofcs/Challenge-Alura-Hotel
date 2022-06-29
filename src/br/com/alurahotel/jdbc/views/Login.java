@@ -1,6 +1,5 @@
 package br.com.alurahotel.jdbc.views;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,11 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import br.com.alurahotel.jdbc.controller.AdmController;
-import br.com.alurahotel.jdbc.controller.AdmController;
-import br.com.alurahotel.jdbc.dao.AdmDAO;
 import br.com.alurahotel.jdbc.modelo.Adm;
-import br.com.alurahotel.jdbc.modelo.Funcionario;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
@@ -26,6 +21,7 @@ import java.awt.Toolkit;
 
 public class Login extends JFrame {
 
+	private static final long serialVersionUID = 3529527505425606586L;
 	private JPanel contentPane;
 	private JTextField txtusuario;
 	private JPasswordField txtSenha;
@@ -74,9 +70,9 @@ public class Login extends JFrame {
 		txtusuario.setBounds(409, 181, 234, 33);
 		contentPane.add(txtusuario);
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Usuario");
+		JLabel lblNewLabel_1_1_1 = new JLabel("Usuario (CPF)");
 		lblNewLabel_1_1_1.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblNewLabel_1_1_1.setBounds(409, 156, 57, 14);
+		lblNewLabel_1_1_1.setBounds(409, 156, 100, 14);
 		contentPane.add(lblNewLabel_1_1_1);
 		
 		txtSenha = new JPasswordField();
@@ -101,7 +97,7 @@ public class Login extends JFrame {
 					usuario.setVisible(true);
 					dispose();					
 				}else {					
-					Erro erro = new Erro("Usuário ou senha incorretos");
+					Erro erro = new Erro("Nome de usuário ou senha inválidos", 20);
 					erro.setVisible(true);
 				}
 			}

@@ -7,9 +7,6 @@ public abstract class Funcionario {
 	protected String senha;
 	private int id;
 	
-	//metodo sem implementacao
-		//public abstract double getBonificacao();	
-	
 	
 	public String getNome() {
 		return this.nome;
@@ -28,7 +25,6 @@ public abstract class Funcionario {
 	}
 
 	public int getId() {
-		// TODO Auto-generated method stub
 		return this.id;
 	}
 		

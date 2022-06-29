@@ -2,16 +2,10 @@ package br.com.alurahotel.jdbc.modelo;
 
 public class Adm extends Funcionario implements Autenticavel {
 
-	/*@Override
-	public double getBonificacao() {
-		return 10;
-	}*/
-
-	// Autenticavel
 	private AutenticarSenha autenticador;
 
-	public Adm(String nome, String senha) {
-		this.nome = nome;
+	public Adm(String cpf, String senha) {
+		this.cpf = cpf;
 		this.senha = senha;
 		this.autenticador = new AutenticarSenha();
 	}

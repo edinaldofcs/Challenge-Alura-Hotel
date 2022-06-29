@@ -18,6 +18,7 @@ import java.awt.Toolkit;
 
 public class Sucesso extends JDialog {
 
+	private static final long serialVersionUID = -5441397823494386581L;
 	private final JPanel contentPanel = new JPanel();
 
 	/**
@@ -75,11 +76,7 @@ public class Sucesso extends JDialog {
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
+			
 		}
 	}
 
