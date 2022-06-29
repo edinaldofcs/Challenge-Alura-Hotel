@@ -1,14 +1,10 @@
 package br.com.alurahotel.jdbc.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +14,6 @@ import br.com.alurahotel.jdbc.modelo.Reserva;
 
 public class ReservaDAO {
 	private Connection connection;
-	private HospedeController hospedeController;
-
 	public ReservaDAO(Connection connection) {
 		this.connection = connection;
 	}

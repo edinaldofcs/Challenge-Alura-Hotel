@@ -1,7 +1,6 @@
 package br.com.alurahotel.jdbc.controller;
 
 import java.sql.Connection;
-import java.util.Date;
 import java.util.List;
 
 import br.com.alurahotel.jdbc.dao.HospedeDAO;

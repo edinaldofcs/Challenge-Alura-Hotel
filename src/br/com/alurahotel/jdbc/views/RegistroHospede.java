@@ -15,7 +15,6 @@ import br.com.alurahotel.jdbc.modelo.Hospede;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.ImageIcon;

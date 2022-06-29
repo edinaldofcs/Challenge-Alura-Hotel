@@ -1,9 +1,6 @@
 package br.com.alurahotel.jdbc.controller;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 import br.com.alurahotel.jdbc.dao.AdmDAO;
 import br.com.alurahotel.jdbc.factory.ConnectionFactory;
 import br.com.alurahotel.jdbc.modelo.Adm;

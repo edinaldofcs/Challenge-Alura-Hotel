@@ -15,8 +15,6 @@ import br.com.alurahotel.jdbc.modelo.Reserva;
 public class HospedeDAO {
 
 	private Connection connection;
-	private ReservasController reservaController;
-
 	public HospedeDAO(Connection connection) {
 		this.connection = connection;
 	}

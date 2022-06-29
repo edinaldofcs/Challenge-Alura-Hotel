@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.com.alurahotel.jdbc.dao.ReservaDAO;
 import br.com.alurahotel.jdbc.factory.ConnectionFactory;
-import br.com.alurahotel.jdbc.modelo.Hospede;
 import br.com.alurahotel.jdbc.modelo.Reserva;
 
 public class ReservasController {
