@@ -24,22 +24,22 @@ public class Sucesso extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			Sucesso dialog = new Sucesso();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String[] args) {
+//		try {
+//			Sucesso dialog = new Sucesso(0, "", 0);
+//			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+//			dialog.setVisible(true);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	/**
 	 * Create the dialog.
 	 */
-	public Sucesso() {
+	public Sucesso(Integer id, String msg, int left) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Sucesso.class.getResource("../imagens/aH-40px.png")));
-		setBounds(100, 100, 376, 226);
+		setBounds(100, 100, 400, 226);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(SystemColor.control);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -53,10 +53,10 @@ public class Sucesso extends JDialog {
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			JLabel lblNewLabel_1 = new JLabel("Sucesso");
+			JLabel lblNewLabel_1 = new JLabel(msg);
 			lblNewLabel_1.setForeground(new Color (12, 138, 199));
 			lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 18));
-			lblNewLabel_1.setBounds(133, 122, 90, 14);
+			lblNewLabel_1.setBounds(left, 122, 350, 20);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
@@ -67,9 +67,14 @@ public class Sucesso extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						if(id > 0) {
+							Buscar busca = new Buscar();
+							busca.setVisible(true);
+						}else {
+							MenuUsuario usuario = new MenuUsuario();
+							usuario.setVisible(true);							
+						}
 						dispose();
-						MenuUsuario usuario = new MenuUsuario();
-						usuario.setVisible(true);
 					}
 				});
 				okButton.setActionCommand("OK");

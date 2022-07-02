@@ -29,7 +29,7 @@ public class HospedeDAO {
 				try (ResultSet rst = pstm.getResultSet()) {
 					while (rst.next()) {
 						Hospede hospede = new Hospede(rst.getString(2), rst.getString(3), rst.getDate(4),
-								rst.getString(5), rst.getLong(6), rst.getInt(7));
+								rst.getString(5), rst.getLong(6), rst.getInt(7), rst.getInt(1));
 						hospede.setId(Integer.parseInt(rst.getString(1)));
 
 						hospedes.add(hospede);
@@ -45,9 +45,15 @@ public class HospedeDAO {
 	}
 
 	public void inserir(Hospede hospede) {
+		
+		Hospede hos = buscarUm(hospede.getId_r());
+		if(hos != null) {
+			alterar(hospede);
+		}else {
+		
 		try {
 			String sql = "INSERT INTO HOSPEDES (NOME, SOBRENOME, DATA_NASCIMENTO, NACIONALIDADE, TELEFONE, ID_R) VALUES (?,?,?,?,?,?)";
-
+			
 			try (PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 				java.sql.Date data_nascimento = new java.sql.Date(hospede.getData_nascimento().getTime());
 
@@ -68,6 +74,8 @@ public class HospedeDAO {
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		}
+		
 		}
 
 	}
@@ -124,9 +132,9 @@ public class HospedeDAO {
 
 				try (ResultSet rst = pstm.getResultSet()) {
 					while (rst.next()) {
+						System.out.println(rst.getInt(1));
 						hospede = new Hospede(rst.getString(2), rst.getString(3), rst.getDate(4), rst.getString(5),
-								rst.getLong(6), rst.getInt(7));
-						hospede.setId(Integer.parseInt(rst.getString(1)));
+								rst.getLong(6), rst.getInt(7),rst.getInt(1));
 
 					}
 				}

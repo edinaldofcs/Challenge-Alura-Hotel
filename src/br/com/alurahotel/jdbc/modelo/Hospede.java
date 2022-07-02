@@ -9,13 +9,13 @@ public class Hospede {
 	private String sobrenome;
 	private Date data_nascimento;
 	private String nacionalidade;
-	private long telefone;
+	private Long telefone;
 	private Integer id_r;
 	
 	
 	
 	public Hospede(String nome, String sobrenome, Date date, String nacionalidade, long telefone,
-			Integer id_r) {
+			Integer id_r, Integer id) {
 		super();
 		this.nome = nome;
 		this.sobrenome = sobrenome;
@@ -23,6 +23,7 @@ public class Hospede {
 		this.nacionalidade = nacionalidade;
 		this.telefone = telefone;
 		this.id_r = id_r;
+		this.id = id;
 	}
 	
 	

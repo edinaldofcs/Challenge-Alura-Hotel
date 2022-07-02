@@ -10,11 +10,12 @@ public class Reserva {
 	private Double valor;
 	private String forma_pagamento;
 	
-	public Reserva(Date date, Date date2, double valor, String f_pagamento) {	
+	public Reserva(Date date, Date date2, double valor, String f_pagamento, int id) {	
 		this.data_entrada = date;
 		this.data_saida = date2;
 		this.valor = valor;
-		this.forma_pagamento = f_pagamento;
+		this.forma_pagamento = f_pagamento;	
+		this.id = id;
 	}
 	
 	

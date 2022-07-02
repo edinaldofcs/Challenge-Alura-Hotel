@@ -1,5 +1,4 @@
 package br.com.alurahotel.jdbc.views;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,54 +15,43 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Toolkit;
 
+
 public class MenuPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private JPanel contentPane, panel_1;
+	private Panel panel;
+	private JButton btnLogin, btnSair;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MenuPrincipal frame = new MenuPrincipal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	private JLabel lblNewLabel, lblNewLabel_1, lblNewLabel_2, lblNewLabel_3;
+	
 	/**
 	 * Create the frame.
 	 */
 	public MenuPrincipal() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuPrincipal.class.getResource("../imagens/aH-40px.png")));
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+//		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 910, 537);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		setResizable(false);
+//		setResizable(false);
 		setLocationRelativeTo(null);
 
 		
-		Panel panel = new Panel();
+		panel = new Panel();
 		panel.setBackground(new Color(245,245,245));
 		panel.setBounds(0, 0, 894, 501);
 		contentPane.add(panel);
-		panel.setLayout(null);
+		panel.setLayout(null);		
 		
-		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(-49, 0, 746, 471);
 		lblNewLabel.setIcon(new ImageIcon(MenuPrincipal.class.getResource("../imagens/menu-img.png")));
 		panel.add(lblNewLabel);
 		
-		JButton btnLogin = new JButton("");
+		btnLogin = new JButton("");
 		btnLogin.setForeground(SystemColor.text);
 		btnLogin.setBackground(Color.white);
 		btnLogin.setIcon(new ImageIcon(MenuPrincipal.class.getResource("../imagens/login.png")));
@@ -77,28 +65,28 @@ public class MenuPrincipal extends JFrame {
 		btnLogin.setBounds(763, 241, 71, 73);
 		panel.add(btnLogin);
 		
-		JLabel lblNewLabel_1 = new JLabel("Login");
+		lblNewLabel_1 = new JLabel("Login");
 		lblNewLabel_1.setForeground(new Color(12, 138, 199));
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 16));
 		lblNewLabel_1.setBounds(777, 213, 44, 24);
 		panel.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon(MenuPrincipal.class.getResource("../imagens/aH-150px.png")));
 		lblNewLabel_2.setBounds(723, 33, 150, 156);
 		panel.add(lblNewLabel_2);
 		
-		JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		panel_1.setBackground(new Color(12, 138, 199));
 		panel_1.setBounds(0, 471, 894, 30);
 		panel.add(panel_1);
 		
-		JLabel lblNewLabel_3 = new JLabel("Desenvolvido por Edinaldo F.C. Santos © 2022");
+		lblNewLabel_3 = new JLabel("Desenvolvido por Edinaldo F.C. Santos © 2022");
 		lblNewLabel_3.setForeground(new Color(240, 248, 255));
 		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 13));
 		panel_1.add(lblNewLabel_3);
 		
-		JButton btnSair = new JButton("");
+		btnSair = new JButton("");
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Object [] opcao ={"Sim","Cancelar"};
@@ -117,5 +105,7 @@ public class MenuPrincipal extends JFrame {
 		btnSair.setBackground(Color.WHITE);
 		btnSair.setBounds(832, 420, 44, 39);
 		panel.add(btnSair);
+		
+		setVisible(true);
 	}
 }

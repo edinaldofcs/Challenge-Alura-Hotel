@@ -1,16 +1,22 @@
 package br.com.alurahotel.jdbc.views;
 
-import java.awt.EventQueue;
+//import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import br.com.alurahotel.jdbc.modelo.Reserva;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
@@ -22,18 +28,18 @@ public class MenuUsuario extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MenuUsuario frame = new MenuUsuario();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					MenuUsuario frame = new MenuUsuario();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -63,7 +69,16 @@ public class MenuUsuario extends JFrame {
 		btnReserva.setIcon(new ImageIcon(MenuUsuario.class.getResource("../imagens/reservas.png")));
 		btnReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Reservas reserva = new Reservas();
+				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+				Date data = null;
+				try {
+					data = formato.parse("2000-01-01");
+				} catch (ParseException e1) {
+					Erro erro = new Erro("Ocorreu um erro inesperado", 50);
+					erro.setVisible(true);
+					System.out.println(e1);
+				}
+				Reservas reserva = new Reservas(new Reserva(data, data, 0.0, "",0));
 				reserva.setVisible(true);
 				dispose();
 			}

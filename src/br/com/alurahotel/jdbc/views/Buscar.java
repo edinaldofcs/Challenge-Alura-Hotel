@@ -1,6 +1,6 @@
 package br.com.alurahotel.jdbc.views;
 
-import java.awt.EventQueue;
+//import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -47,18 +47,18 @@ public class Buscar extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Buscar frame = new Buscar();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Buscar frame = new Buscar();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -256,10 +256,6 @@ public class Buscar extends JFrame {
 		}
 	}
 
-//	private void removerLinha(JTable tabela, int linha) {
-//		DefaultTableModel model = (DefaultTableModel) tabela.getModel();
-//		model.removeRow(linha);
-//	}
 
 	private void alterarReserva() throws ParseException {
 		if (tbReservas.getSelectedRow() > -1) {
@@ -273,12 +269,10 @@ public class Buscar extends JFrame {
 				@SuppressWarnings("deprecation")
 				Double valor = (double) (saida.getDate() - entrada.getDate()) * 40;
 				String pagamento = (String) modeloReserva.getValueAt(tbReservas.getSelectedRow(), 4);
-				Reserva reserva = new Reserva(entrada, saida, valor, pagamento);
-				reserva.setId(id);
-				this.reservaController.alterar(reserva);
-				preencherReservas();
-				Erro erro = new Erro("Reserva alterada com sucesso", 50);
-				erro.setVisible(true);
+				Reserva reserva = new Reserva(entrada, saida, valor, pagamento, id);
+				Reservas showReserva = new Reservas(reserva);
+				showReserva.setVisible(true);
+				dispose();
 			} else {
 				Erro erro = new Erro("Por favor, selecione o ID", 60);
 				erro.setVisible(true);
@@ -302,13 +296,11 @@ public class Buscar extends JFrame {
 				Date dataN = formato.parse(modeloHospede.getValueAt(tbHospedes.getSelectedRow(), 3).toString());
 				String nacionalidade = (String) modeloHospede.getValueAt(tbHospedes.getSelectedRow(), 4);
 				Long telefone = Long.parseLong(modeloHospede.getValueAt(tbHospedes.getSelectedRow(), 5).toString());
-				Integer id_r = (Integer) modeloHospede.getValueAt(tbHospedes.getSelectedRow(), 6);
-				Hospede hospede = new Hospede(nome, sobrenome, dataN, nacionalidade, telefone, id_r);
-				hospede.setId(id);
-				this.hospedeController.alterar(hospede);
-				preencherHospedes();
-				Erro erro = new Erro("Hospede alterado com sucesso", 50);
-				erro.setVisible(true);
+				Integer id_r = (Integer) modeloHospede.getValueAt(tbHospedes.getSelectedRow(), 6);								
+				Hospede hospede = new Hospede(nome, sobrenome, dataN, nacionalidade, telefone, id_r, id);				
+				RegistroHospede showHospede = new RegistroHospede(hospede);
+				showHospede.setVisible(true);
+				dispose();
 			} else {
 				Erro erro = new Erro("Por favor, selecione o ID", 60);
 				erro.setVisible(true);

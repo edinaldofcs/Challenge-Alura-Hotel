@@ -1,6 +1,5 @@
 package br.com.alurahotel.jdbc;
 
-
 import br.com.alurahotel.jdbc.views.MenuPrincipal;
 
 public class Main {
